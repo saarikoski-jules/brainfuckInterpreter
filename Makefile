@@ -16,7 +16,7 @@ all: $(NAME)
 	$(CC) $(FLAGS) -o $@ -c $< 
 
 $(NAME): $(OBJ)
-	$(CC) -o $@ $<
+	$(CC) $(OBJ) -o $@
 
 clean:
 	rm -f $(OBJ)
