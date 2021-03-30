@@ -1,10 +1,6 @@
 #include "Instructions.hpp"
 #include <iostream>
 
-#define JUMP_FORWARD "jumpForward";
-#define JUMP_BACK "jumpBack";
-
-
 void IncrementPtr::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
 	ptr++;
 	i++;
@@ -69,14 +65,14 @@ void JumpForwardIf::execute(char*& ptr, std::list<Instruction*>::iterator& i) co
 	if (*ptr == 0) {
 		while (true) {
 			i++;
-			if ((*i)->getType() == "JUMP_BACK") {
+			if ((*i)->getType() == "]") {
 				if (braces == 0) {
 					i++;
 					return;
 				}
 				braces--;
 			}
-			if ((*i)->getType() == "JUMP_FORWARD") {
+			if ((*i)->getType() == "[") {
 				braces++;
 			}
 		}
@@ -85,7 +81,7 @@ void JumpForwardIf::execute(char*& ptr, std::list<Instruction*>::iterator& i) co
 }
 
 std::string JumpForwardIf::getType() const {
-	return ("JUMP_FORWARD");
+	return ("[");
 }
 
 void JumpBackIf::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
@@ -94,14 +90,14 @@ void JumpBackIf::execute(char*& ptr, std::list<Instruction*>::iterator& i) const
 	if (*ptr != 0) {
 		while (true) {
 			i--;
-			if ((*i)->getType() == "JUMP_FORWARD") {
+			if ((*i)->getType() == "[") {
 				if (braces == 0) {
 					i++;
 					return;
 				}
 				braces--;
 			}
-			if ((*i)->getType() == "JUMP_BACK") {
+			if ((*i)->getType() == "]") {
 				braces++;
 			}
 		}
@@ -110,5 +106,5 @@ void JumpBackIf::execute(char*& ptr, std::list<Instruction*>::iterator& i) const
 }
 
 std::string JumpBackIf::getType() const {
-	return ("JUMP_BACK");
+	return ("]");
 }

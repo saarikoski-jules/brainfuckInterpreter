@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-// #include <queue>
 #include <list>
 #include "Instructions.hpp"
 #include "InstructionFactory.hpp"
@@ -41,6 +40,10 @@ int main(int argc, char** argv) {
 	}
 	std::ifstream f;
 	f.open(argv[1], std::fstream::in);
+	if (f.fail()) {
+		std::cerr << "Not a valid file" << std::endl;
+		return (1);
+	}
 	instructions = getInstructions(f);
 	f.close();
 	executeProgram(instructions);
