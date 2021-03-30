@@ -14,7 +14,6 @@ std::list<Instruction*>* getInstructions(std::ifstream& f) {
 		if (f.eof()) {
 			break ;
 		}
-		std::cout << c;
 		Instruction* item = factory.newInstruction(c);
 		if (item != NULL) {
 			instructions->push_back(item);
@@ -26,7 +25,6 @@ std::list<Instruction*>* getInstructions(std::ifstream& f) {
 void executeProgram(std::list<Instruction*>* instructions) {
 	char array[30000] = {0};
 	char *ptr = &array[0];
-	std::cout << "execute" << std::endl;
 	std::list<Instruction*>::iterator i = instructions->begin();
 	while (i != instructions->end()) {
 		Instruction* inst = *i;

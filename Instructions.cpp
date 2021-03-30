@@ -1,14 +1,12 @@
 #include "Instructions.hpp"
 #include <iostream>
 
-// #define JUMP_FORWARD "jumpForward";
-// #define JUMP_BACK "jumpBack";
+#define JUMP_FORWARD "jumpForward";
+#define JUMP_BACK "jumpBack";
 
 
 void IncrementPtr::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
-	std::cout << "inc ptr" << std::endl;
 	ptr++;
-	printf("%d\n", *ptr);
 	i++;
 }
 
@@ -17,9 +15,7 @@ std::string IncrementPtr::getType() const {
 }
 
 void DecrementPtr::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
-	std::cout <<  "dec ptr" << std::endl;
 	ptr--;
-	printf("%d\n", *ptr);
 	i++;
 }
 
@@ -29,9 +25,7 @@ std::string DecrementPtr::getType() const {
 }
 
 void IncrementByte::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
-	std::cout << "inc byte" << std::endl;
 	(*ptr)++;
-	printf("%d\n", *ptr);
 	i++;
 }
 
@@ -41,9 +35,7 @@ std::string IncrementByte::getType() const {
 }
 
 void DecrementByte::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
-	std::cout << "dec byte" << std::endl;
 	(*ptr)--;
-	printf("%d\n", *ptr);
 	i++;
 }
 
@@ -53,19 +45,16 @@ std::string DecrementByte::getType() const {
 }
 
 void OutputByte::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
-	std::cout << "output byte" << std::endl;
-	std::cout << ptr;
+	std::cout << *ptr;
 	i++;
 	
 }
 
 std::string OutputByte::getType() const {
 	return (".");
-
 }
 
 void StoreByte::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
-	std::cout << "store byte" << std::endl;
 	*ptr = getchar();
 	i++;
 }
@@ -78,10 +67,8 @@ void JumpForwardIf::execute(char*& ptr, std::list<Instruction*>::iterator& i) co
 	int braces = 0;
 
 	if (*ptr == 0) {
-		std::cout << "jump forward" << std::endl;
 		while (true) {
 			i++;
-			std::cout << (*i)->getType();
 			if ((*i)->getType() == "JUMP_BACK") {
 				if (braces == 0) {
 					i++;
@@ -95,7 +82,6 @@ void JumpForwardIf::execute(char*& ptr, std::list<Instruction*>::iterator& i) co
 		}
 	}
 	i++;
-	std::cout << "no jump forward" << std::endl;
 }
 
 std::string JumpForwardIf::getType() const {
@@ -105,12 +91,9 @@ std::string JumpForwardIf::getType() const {
 void JumpBackIf::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
 	int braces = 0;
 
-	printf("%d\n", *ptr);
 	if (*ptr != 0) {
-		std::cout << "jump back" << std::endl;
 		while (true) {
 			i--;
-			std::cout << (*i)->getType();
 			if ((*i)->getType() == "JUMP_FORWARD") {
 				if (braces == 0) {
 					i++;
@@ -123,8 +106,7 @@ void JumpBackIf::execute(char*& ptr, std::list<Instruction*>::iterator& i) const
 			}
 		}
 	}
-	i--;
-	std::cout << "no jump back" << std::endl;
+	i++;
 }
 
 std::string JumpBackIf::getType() const {
