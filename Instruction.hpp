@@ -4,7 +4,7 @@
 class Instruction {
 	public:
 
-	virtual void execute(char* ptr, std::list<Instruction*>::iterator& i) const = 0;
+	virtual void execute(char*& ptr, std::list<Instruction*>::iterator& i) const = 0;
 	virtual std::string getType() const = 0;
 
 };
