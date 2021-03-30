@@ -29,7 +29,14 @@ void executeProgram(std::list<Instruction*>* instructions) {
 		Instruction* inst = *i;
 		inst->execute(ptr, i);
 	}
+}
 
+void finishProgram(std::list<Instruction*>* instructions) {
+	while (instructions->size() != 0) {
+		Instruction* cur = instructions->front();
+		delete cur;
+		instructions->pop_front();
+	}
 }
 
 int main(int argc, char** argv) {
@@ -47,4 +54,5 @@ int main(int argc, char** argv) {
 	instructions = getInstructions(f);
 	f.close();
 	executeProgram(instructions);
+	finishProgram(instructions);
 }

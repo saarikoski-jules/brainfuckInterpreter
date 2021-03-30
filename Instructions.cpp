@@ -17,7 +17,6 @@ void DecrementPtr::execute(char*& ptr, std::list<Instruction*>::iterator& i) con
 
 std::string DecrementPtr::getType() const {
 	return ("<");
-
 }
 
 void IncrementByte::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
@@ -27,7 +26,6 @@ void IncrementByte::execute(char*& ptr, std::list<Instruction*>::iterator& i) co
 
 std::string IncrementByte::getType() const {
 	return ("+");
-
 }
 
 void DecrementByte::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
@@ -37,13 +35,11 @@ void DecrementByte::execute(char*& ptr, std::list<Instruction*>::iterator& i) co
 
 std::string DecrementByte::getType() const {
 	return ("-");
-
 }
 
 void OutputByte::execute(char*& ptr, std::list<Instruction*>::iterator& i) const {
 	std::cout << *ptr;
 	i++;
-	
 }
 
 std::string OutputByte::getType() const {
